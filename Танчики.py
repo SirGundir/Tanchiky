@@ -5,19 +5,18 @@ import time
 # Инициализация Pygame
 pygame.init()
 
-# Настройки экрана
-WIDTH, HEIGHT = 800, 600
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Танчики")
 
+# Константы
+WIDTH, HEIGHT = 800, 600
 # Цвета
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 
-# Класс танка
+
 class Tank:
+    """Класс танка"""
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -39,8 +38,9 @@ class Tank:
         if HEIGHT // 2 <= new_y <= HEIGHT - self.height:
             self.y = new_y
 
-# Класс пули
+
 class Bullet:
+    """Класс пули"""
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -54,8 +54,9 @@ class Bullet:
     def move(self):
         self.y -= self.speed
 
-# Класс цели
+
 class Target:
+    """Класс цели"""
     def __init__(self):
         self.x = random.randint(0, WIDTH - 30)
         self.y = random.randint(50, 150)
@@ -72,8 +73,11 @@ class Target:
         if self.x <= 0 or self.x + self.width >= WIDTH:
             self.speed = -self.speed  # Изменение направления
 
-# Основной цикл игры
 def main():
+    """
+    Основной цикл игры
+    :return: widget with game
+    """
     while True:
         tank = Tank(WIDTH // 2, HEIGHT - 60)
         bullets = []
@@ -160,4 +164,8 @@ def main():
                 break  # Перезапускаем игру
 
 if __name__ == "__main__":
+    # Инициализация экрана
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Танчики")
+
     main()
