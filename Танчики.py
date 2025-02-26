@@ -1,7 +1,7 @@
 import pygame
 import random
 import time
-
+#qwerr
 # Инициализация Pygame
 pygame.init()
 
