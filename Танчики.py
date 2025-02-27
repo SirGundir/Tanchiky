@@ -10,6 +10,10 @@ WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Танчики")
 
+# Загрузка изображения цели
+target_image = pygame.image.load('resource/target.jpg')  # Укажите путь к вашему изображению
+target_image = pygame.transform.scale(target_image, (30, 30))  # Масштабирование изображения до нужного размера
+
 # Цвета
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -55,22 +59,28 @@ class Bullet:
         self.y -= self.speed
 
 # Класс цели
-class Target:
+class Target(pygame.sprite.Sprite):
     def __init__(self):
-        self.x = random.randint(0, WIDTH - 30)
-        self.y = random.randint(50, 150)
-        self.width = 30
-        self.height = 30
-        self.color = BLACK
-        self.speed = random.choice([2, 3])  # Скорость движения
+        global DIFFICULTY
+        super().__init__()
+        self.image = target_image
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randint(0, WIDTH - 30)
+        self.rect.y = random.randint(50, 150)
+        self.speed = 3 # Скорость движения
 
     def draw(self):
-        pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
+        screen.blit(self.image, self.rect)
 
     def move(self):
-        self.x += self.speed
-        if self.x <= 0 or self.x + self.width >= WIDTH:
+        self.rect.x += self.speed
+
+        if self.rect.x <= 0 or self.rect.x + self.rect.width >= WIDTH:
             self.speed = -self.speed  # Изменение направления
+
+    def check_collision(self, other_target):
+        return self.rect.colliderect(other_target.rect)
+
 
 # Основной цикл игры
 def main():
@@ -121,11 +131,17 @@ def main():
                 target.move()
                 target.draw()
 
+                # Проверка столкновений между целями
+                for other_target in targets:
+                    if target != other_target and target.check_collision(other_target):
+                        target.speed = -target.speed
+                        other_target.speed = -other_target.speed
+
             # Проверка попаданий
             for bullet in bullets[:]:
                 for target in targets[:]:
-                    if (target.x < bullet.x < target.x + target.width and
-                        target.y < bullet.y < target.y + target.height):
+                    if (target.rect.x < bullet.x < target.rect.x + target.rect.width and
+                        target.rect.y < bullet.y < target.rect.y + target.rect.height):
                         if bullet in bullets:
                             bullets.remove(bullet)
                         if target in targets:
@@ -158,6 +174,3 @@ def main():
                 pygame.display.flip()
                 time.sleep(3)  # Пауза перед перезапуском
                 break  # Перезапускаем игру
-
-if __name__ == "__main__":
-    main()
