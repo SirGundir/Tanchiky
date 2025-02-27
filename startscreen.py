@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication
-from PyQt5 import uic
-from PyQt5.QtGui import QPixmap
+from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6 import uic
+from PyQt6.QtGui import QPixmap
 import sys
 
 
@@ -8,7 +8,7 @@ class StartWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('startscreen.ui', self)
-        img = QPixmap('resource//scale_1200.jpg')
+        img = QPixmap('resource/main_window.jpg')
         self.image.setPixmap(img.scaled(1091, 801))
         self.btngrp.buttonClicked.connect(self.mov)
         self.play.clicked.connect(self.startplay)
