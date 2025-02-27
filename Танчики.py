@@ -1,7 +1,7 @@
 import pygame
 import random
 import time
-#qwerr
+
 # Инициализация Pygame
 pygame.init()
 
@@ -158,6 +158,3 @@ def main():
                 pygame.display.flip()
                 time.sleep(3)  # Пауза перед перезапуском
                 break  # Перезапускаем игру
-
-if __name__ == "__main__":
-    main()

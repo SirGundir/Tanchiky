@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Танчики</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="image">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>-80</y>
+      <width>1091</width>
+      <height>801</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>scale_1200.jpg</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>20</y>
+      <width>231</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel#la {font: 55px;color: #3574e8}
+</string>
+    </property>
+    <property name="text">
+     <string>Танчики</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="choose">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>361</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>361</width>
+      <height>51</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>361</width>
+      <height>51</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel#choose {font: 25px; color: #3574e8}</string>
+    </property>
+    <property name="text">
+     <string>Выбирите уровень сложности:</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="verticalGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>231</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QRadioButton" name="light">
+       <property name="styleSheet">
+        <string notr="true">font: bold 20px;
+color: #3574e8;</string>
+       </property>
+       <property name="text">
+        <string>легкий уровень</string>
+       </property>
+       <attribute name="buttonGroup">
+        <string notr="true">btngrp</string>
+       </attribute>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="mid">
+       <property name="styleSheet">
+        <string notr="true">font: bold 20px;
+color: #3574e8;</string>
+       </property>
+       <property name="text">
+        <string>средний уровень</string>
+       </property>
+       <attribute name="buttonGroup">
+        <string notr="true">btngrp</string>
+       </attribute>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="hard">
+       <property name="styleSheet">
+        <string notr="true">font: bold 20px;
+color: #3574e8;</string>
+       </property>
+       <property name="text">
+        <string>высокий уровень</string>
+       </property>
+       <attribute name="buttonGroup">
+        <string notr="true">btngrp</string>
+       </attribute>
+      </widget>
+     </item>
+    </layout>
+    <zorder>mid</zorder>
+    <zorder>hard</zorder>
+    <zorder>light</zorder>
+   </widget>
+   <widget class="QPushButton" name="play">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>400</y>
+      <width>316</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 25px;
+color: #3574e8;
+background-color: #d99f5d;
+border-style: outset;
+border-width: 2px;
+border-radius: 10px;
+border-color: beige;
+min-width: 10em;
+padding: 6px;</string>
+    </property>
+    <property name="text">
+     <string>играть</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="btngrp"/>
+ </buttongroups>
+</ui>
