@@ -2,6 +2,7 @@ import pygame
 import random
 import time
 
+
 # Инициализация Pygame
 pygame.init()
 
@@ -15,6 +16,7 @@ target_image = pygame.image.load('resource/target.jpg')  # Укажите пут
 target_image = pygame.transform.scale(target_image, (30, 30))  # Масштабирование изображения до нужного размера
 
 # Цвета
+DIFFIULTIES = {'легкий уровень': 1, 'средний уровень': 3, 'высокий уровень': 4}
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -60,14 +62,14 @@ class Bullet:
 
 # Класс цели
 class Target(pygame.sprite.Sprite):
-    def __init__(self):
-        global DIFFICULTY
+    def __init__(self, speed):
+        global DIFFIULTIES
         super().__init__()
         self.image = target_image
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - 30)
         self.rect.y = random.randint(50, 150)
-        self.speed = 3 # Скорость движения
+        self.speed = DIFFIULTIES[speed] # Скорость движения
 
     def draw(self):
         screen.blit(self.image, self.rect)
@@ -83,11 +85,11 @@ class Target(pygame.sprite.Sprite):
 
 
 # Основной цикл игры
-def main():
+def main(diff='легкий уровень'):
     while True:
         tank = Tank(WIDTH // 2, HEIGHT - 60)
         bullets = []
-        targets = [Target() for _ in range(5)]
+        targets = [Target(diff) for _ in range(5)]
         shots_fired = 0
         targets_hit = 0
         start_time = pygame.time.get_ticks()  # Время начала игры
@@ -146,7 +148,7 @@ def main():
                             bullets.remove(bullet)
                         if target in targets:
                             targets.remove(target)
-                            targets.append(Target())
+                            targets.append(Target(diff))
                             targets_hit += 1
 
             # Отрисовка танка

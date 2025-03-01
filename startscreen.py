@@ -12,13 +12,15 @@ class StartWindow(QMainWindow):
         self.image.setPixmap(img.scaled(1091, 801))
         self.btngrp.buttonClicked.connect(self.mov)
         self.play.clicked.connect(self.startplay)
+        self.diff = 'легкий уровень'
 
     def mov(self, button):
-        print(button.text())
+        self.diff = button.text()
 
     def startplay(self):
         import Танчики
-        Танчики.main()
+        self.hide()
+        Танчики.main(self.diff)
 
 
 if __name__ == '__main__':
